@@ -8,14 +8,12 @@ package main
 
 func main() {
 	// Arrays
-	// - An array is a fixed-size collection of elements of the same type, like a fixed parking slot.
+	// - An array is a fixed-size collection of elements of the same type.
 	// - An array is declared by specifying the type and size of the array.
 	// - An array is indexed starting at 0.
 
 	// Length of an array is the number of elements it was declared with.
 
-	// Superstar cousin of arrays
-	// They're like magic dynamic parking lots
 	// Slices
 	// - A slice is a dynamically-sized, flexible view into the elements of an array.
 
