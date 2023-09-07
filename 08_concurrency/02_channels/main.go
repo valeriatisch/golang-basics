@@ -39,7 +39,7 @@ func main() {
 	bufCh <- "Luna"
 	// The following won't work
 	// bufCh <- "Lea" // This is waiting till a value is consumed from the channel so a space becomes free.
-	
+
 	ch := make(chan int)
 	go foo(ch, 34)
 	go foo(ch, 35)
@@ -48,7 +48,23 @@ func main() {
 	// Ranges
 	// - A loop that iterates over a channel until it is closed.
 	// - The range will block by default if the channel is empty unless it is closed.
-	
+	go func() {
+		fmt.Println("Putting values on the channel...")
+		for i := 0; i < 10; i++ {
+			ch <- i
+		}
+		close(ch)
+	}()
+
+	v, ok := <-ch
+	fmt.Println(v, ok)
+
+	fmt.Println("Now reading values from the channel...")
+	for v := range ch {
+		fmt.Println(v)
+	}
+	v, ok = <-ch
+	fmt.Println(v, ok)
 }
 
 func foo(ch chan int, x int) {
