@@ -14,11 +14,21 @@ func main() {
 	 * - A pointer is created by using the & operator before the variable name.
 	 * - A pointer is dereferenced by using the * operator before the pointer name.
 	 */
+	x := 10
+	var xPtr *int
+	xPtr = &x
+	fmt.Println(x)
+	fmt.Println(xPtr)
+	fmt.Println(*xPtr)
 
 	// Pointers with functions
 	// Pass by value
+	incrementValue(x)
+	fmt.Println("x in function main:", x)
 
 	// Pass by reference
+	incrementPtr(&x)
+	fmt.Println("x in function main:", x)
 
 	/* Make
 	 * - The make function is used to allocate memory for a slice, map, or channel.
@@ -27,7 +37,6 @@ func main() {
 	// Length of a slice is the number of elements it contains.
 	// Capacity of a slice is the maximum number of elements it can hold before it needs to be resized.
 	// Capacity of a slice can be larger than its length, which means it can hold additional elements without needing to be resized.
-
 	slice := make([]int, 0, 5)
 	printLenCap(slice)
 
@@ -63,10 +72,11 @@ func main() {
 	fmt.Println(v)
 }
 
-func incrementValue(x int) {
+func incrementValue(x int) int {
 	fmt.Println("Took:", x)
 	x += 1
 	fmt.Println("Incremented:", x)
+	return x
 }
 
 func incrementPtr(x *int) {

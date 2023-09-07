@@ -17,6 +17,7 @@ type Human interface {
 // Adult and child types implement the Human interface.
 type Adult struct {
 	name string
+	fn func()
 }
 
 func (a Adult) breath() {
@@ -35,7 +36,7 @@ func beingHuman(h Human) {
 
 type Child struct {
 	name string
-	age int
+	age  int
 }
 
 func (c Child) breath() {
@@ -43,9 +44,15 @@ func (c Child) breath() {
 }
 
 func main() {
-	a := Adult{name: "Jane"}
+	a := Adult{
+		name: "Jane",
+		fn: func() {
+			println("Jane is an adult.")
+		},
+	}
 	a.walk()
 	beingHuman(a)
+	a.fn()
 
 	c := Child{name: "Tom", age: 5}
 	c.breath()
